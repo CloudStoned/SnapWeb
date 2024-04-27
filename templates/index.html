@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload and View Image</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h1>Upload an Image</h1>
+    <form method="POST" enctype="multipart/form-data" action="{{ url_for('upload_image') }}">
+        <input type="file" name="file" accept=".jpg, .png, .jpeg">
+        <input type="submit" value="Save Image">
+    </form>
+
+    <div class="image-gallery">
+        <a href="{{ url_for('uploaded_image') }}">
+            <button type="button">View Uploaded Images</button>
+        </a>
+    </div>
+</body>
+</html>

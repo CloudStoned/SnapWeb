@@ -10,4 +10,8 @@ form {
 img {
     max-width: 500px;
     margin-top: 20px;
+    /* Corrected property for image size */
+    width: 250px; /* Set the width of the image to 250px */
+    height: auto; /* Maintain aspect ratio */
 }
+
