@@ -1,20 +1,21 @@
 from flask import Flask, render_template, request, redirect, url_for
+from image_utils import ImageProcessor
 import os
-from google.oauth2 import service_account
+import cv2
 from googleapiclient.discovery import build
 from googleapiclient.http import MediaFileUpload
 from werkzeug.utils import secure_filename
+from creds import UPLOAD_FOLDER, PARENT_FOLDER_ID, authenticate
 
 app = Flask(__name__)
-app.config['UPLOAD_FOLDER'] = 'temp'
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-SCOPES = ['https://www.googleapis.com/auth/drive']
-SERVICE_ACCOUNT_FILE = 'service_account.json'
-PARENT_FOLDER_ID = '1BJY2TgB0rknJNYvfARpaa4zgEytH6Sju'  # Replace with your Google Drive folder ID
-
-def authenticate():
-    creds = service_account.Credentials.from_service_account_file(SERVICE_ACCOUNT_FILE, scopes=SCOPES)
-    return creds
+def remove_temp_file(filepath):
+    try:
+        os.remove(filepath)
+        print(f"Temporary file removed: {filepath}")
+    except Exception as e:
+        print(f"Error removing temporary file: {e}")
 
 @app.route('/')
 def index():
@@ -32,35 +33,36 @@ def upload_image():
         service = build('drive', 'v3', credentials=creds)
         
         try:
-            # Save the uploaded file to a temporary location
-            temp_filename = secure_filename(file.filename)
-            temp_filepath = os.path.join(app.config['UPLOAD_FOLDER'], temp_filename)
-            
-            # Write the file to the temporary location
-            file.save(temp_filepath)
-            
-            # Prepare file metadata
-            file_metadata = {
-                'name': file.filename,
-                'parents': [PARENT_FOLDER_ID],
-                'mimeType': 'image/jpeg'
-            }
-            
-            # Create a MediaFileUpload object with the file content
-            media = MediaFileUpload(temp_filepath, mimetype='image/jpeg', resumable=True)
-            
-            # Upload file to Google Drive
-            file_drive = service.files().create(body=file_metadata, media_body=media).execute()
-            
-            print("File uploaded successfully:", file_drive)
-            # Close the file handle explicitly
-            file.close()
-            
-            # Clean up: remove temporary file
-            os.remove(temp_filepath)
-            print("Temporary file removed:", temp_filepath)
-            
-            return redirect(url_for('index'))
+            # Process the uploaded image using ImageProcessor
+            image_processor = ImageProcessor()
+            processed_img = image_processor.process_image(file)
+
+            if processed_img is not None:
+                # Save the processed image to a temporary file
+                temp_filename = secure_filename(file.filename)
+                temp_filepath = os.path.join(app.config['UPLOAD_FOLDER'], temp_filename)
+                cv2.imwrite(temp_filepath, processed_img)  # Save processed image
+
+                # Prepare file metadata for Google Drive
+                file_metadata = {
+                    'name': file.filename,
+                    'parents': [PARENT_FOLDER_ID],
+                    'mimeType': 'image/jpeg'
+                }
+
+                # Create a MediaFileUpload object with the processed image content
+                media = MediaFileUpload(temp_filepath, mimetype='image/jpeg', resumable=True)
+                
+                # Upload file to Google Drive
+                file_drive = service.files().create(body=file_metadata, media_body=media).execute()
+                print("File uploaded successfully:", file_drive)
+
+                # Remove the temporary file after successful upload
+                remove_temp_file(temp_filepath)
+
+                return redirect(url_for('index'))  # Redirect to a success page
+            else:
+                return "Error processing image."
         
         except Exception as e:
             print("Error uploading file:", e)
