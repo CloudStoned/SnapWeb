@@ -1,5 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for
 import os
+from image_preprocess import pre_process_image
+from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
 
@@ -12,10 +14,19 @@ def upload_image():
     if request.method == 'POST':
         file = request.files['file']
         if file:
-            filename = file.filename
-            file.save(os.path.join(app.root_path, 'static/uploads', filename))
-            return redirect(url_for('index')) 
+            filename = secure_filename(file.filename)
+            save_path = os.path.join(app.root_path, 'static/uploads', filename)
+            
+            # Preprocess the image (assuming pre_process_image is defined)
+            try:
+                pre_process_image(file, save_path)
+            except Exception as e:
+                return f"Error processing image: {str(e)}"
+
+            return redirect(url_for('uploaded_image'))
+    
     return 'Upload failed'
+
 @app.route('/uploaded_image')
 def uploaded_image():
     # Define the path to the uploads directory
@@ -29,7 +40,6 @@ def uploaded_image():
     
     # Pass the list of image filenames to the template for rendering
     return render_template('uploaded_image.html', image_filenames=image_filenames)
-
 
 if __name__ == '__main__':
     app.run(debug=True)
