@@ -51,7 +51,6 @@ Pygments==2.18.0
 pyparsing==3.1.2
 python-dateutil==2.9.0.post0
 python-dotenv==1.0.1
-pywin32==306
 pyzmq==26.0.3
 requests==2.31.0
 rsa==4.9
@@ -67,3 +66,4 @@ uritemplate==4.1.1
 urllib3==2.2.1
 wcwidth==0.2.13
 Werkzeug==3.0.2
+
