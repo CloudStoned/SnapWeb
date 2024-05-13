@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 
 class ImageProcessor:
-    def process_image(self, file_stream):
+    def pre_process_for_saving(self, file_stream):
         try:
             # Read the image in memory using NumPy from the file stream
             filestr = file_stream.read()
@@ -17,4 +17,5 @@ class ImageProcessor:
         except Exception as e:
             print(f"Error processing image: {e}")
             return None 
+        
 

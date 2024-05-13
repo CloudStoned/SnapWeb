@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Snapfolia</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h1>Predict an Image</h1>
+    <form method="POST" enctype="multipart/form-data" action="{{ url_for('predict_image') }}">
+        <input type="file" name="file" accept=".jpg, .png, .jpeg">
+        <input type="submit" value="Predict Image">
+    </form>
+</body>
+</html>
