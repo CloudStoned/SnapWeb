@@ -2,12 +2,11 @@ import os
 from google.oauth2 import service_account
 from dotenv import load_dotenv
 
-# Load environment variables from .env file
 load_dotenv()
 
 UPLOAD_FOLDER = 'temp'
 SCOPES = ['https://www.googleapis.com/auth/drive']
-PARENT_FOLDER_ID = '1dumOuww0erGVR0ec1au_o7ehZA3Kulg5'
+PARENT_FOLDER_ID = os.getenv('GOOGLE_FOLDER_ID')
 
 def authenticate():
     credentials_path = os.getenv('GOOGLE_APPLICATION_CREDENTIALS')

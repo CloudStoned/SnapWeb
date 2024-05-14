@@ -5,16 +5,19 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    <h1>Upload an Image</h1>
-    <form method="POST" enctype="multipart/form-data" action="{{ url_for('upload_image') }}">
-        <input type="file" name="file" accept=".jpg, .png, .jpeg">
-        <input type="submit" value="Save Image">
-    </form>
+    <div class="container">
+        <h1>Upload an Image</h1>
+        <form id="uploadForm" method="POST" enctype="multipart/form-data" action="{{ url_for('upload_image') }}">
+            <input type="file" id="fileInput" name="file" accept=".jpg, .png, .jpeg">
+            <img id="imagePreview" src="#" alt="Image Preview" class="hidden">
+            <input type="submit" value="Save Image">
+        </form>
 
-    <div class="image-gallery">
-        <a href="{{ url_for('uploaded_image') }}">
-            <button type="button">View Uploaded Images</button>
-        </a>
+        <div class="image-gallery">
+            <button type="button" class="button">View Uploaded Images</button>
+        </div>
     </div>
+
+    <script src="{{ url_for('static', filename='javascript/scripts.js') }}"></script>
 </body>
 </html>
