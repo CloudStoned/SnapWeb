@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Uploaded Images</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h1>Uploaded Images</h1>
+    {% if image_filenames %}
+        <div class="image-gallery">
+            {% for filename in image_filenames %}
+                <img src="{{ url_for('static', filename='uploads/' + filename) }}" alt="{{ filename }}">
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No images uploaded</p>
+    {% endif %}
+</body>
+</html>

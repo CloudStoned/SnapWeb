@@ -81,7 +81,7 @@ def predict_image():
 
     try:
         IMGPR = ImagePreProcessor()
-        input_features = IMGPR.for_predicting(file_stream=file)
+        input_features = IMGPR.for_predicting(file.stream)
 
         if input_features is not None:
             input_features = input_features.reshape(1, -1)  
