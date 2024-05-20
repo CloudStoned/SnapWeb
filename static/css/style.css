@@ -1,81 +1,418 @@
-body, html {
-    margin: 0;
+html {
+    scroll-behavior: smooth;
+}
+
+body{
+    background-color: #E5EFE5;
+    overflow-x: hidden;
+    margin: 0; 
     padding: 0;
-    font-family: Arial, sans-serif;
+
+}
+
+#logo img{
+    position:absolute;
+    height: 150px;
+    width: 250px;
+    margin-left: 20px;
+    padding: 0;
+    top: 0px;
+}
+
+.navigation{
     display: flex;
-    justify-content: center;
+    gap: 20px;
+    position: relative;
+    left:650px;
+    top: 45px;
+}
+
+.navigation h4 {
+    margin: 0;
+    margin-right: 20px;
+    font-family: 'Quicksand';
+    color: #1F571A;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+h1{
+    font-family: 'Montserrat';
+    font-size: 50px;
+    color: #1F571A;
+    position: relative;
+    left: 100px;
+    top: 150px;
+}
+
+#leaf img{
+    position: relative;
+    left:680px;
+    height: 400px;
+    width: 600px;
+    top: -150px;
+}
+.home-footer {
+    display: flex;
     align-items: center;
-    height: 100vh;
-    background-color: #f8f8f8;
-}
-
-.container {
+    justify-content: center;
     text-align: center;
+    width: 100%; /* Ensure the container takes full width */
+    position: relative;
+    font-family: 'Quicksand', sans-serif;
+    font-weight:600;
+    font-size: 20px;
+    color: #372F0D;
+    margin-bottom: 0;
+    bottom: 120px;
+    left: 12px;
+}
+
+.home-footer::before,
+.home-footer::after {
+    content: '';
+    flex-grow: 1;
+    border-bottom: 1px solid #000; /* Line color */
+    margin: 0 50px 0 50px; /* Space around the text */
+}
+
+#logotwo img{
+    position:relative;
+    height: 150px;
+    width: 250px;
+    bottom: 50px;
+}
+
+.white-container {
+    background-image: url(./assets/treebg.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 620px;
+    padding: 40px;
+    overflow: hidden; /* Ensure the background image doesn't overflow */
+}
+
+.about-snapfolia-content {
+    position: relative;
+    z-index: 1; /* Ensure the content is above the background image */
+}
+.about-snapfolia-container{
+    position: relative;
+    background-color: rgb(255, 255, 255, 0.8);
+    width: 80%;
+    margin: 0 auto;
     padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    bottom: 0px;
+    border-radius: 25px;
+    margin-bottom: 0px;
+}
+.about-snapfolia-container > p{
+    position: relative;
+    bottom: 80px;
+    font-size:20px;
+    text-align:justify;
+    margin: 0 auto;
+    width: 90%;
+    font-size: 30px;
 }
 
-h1 {
-    font-size: 24px;
-    color: #333;
-    margin-bottom: 20px;
+.about-snapfolia-container > h2{
+    text-align: center;
+    position: relative;
+    bottom: 80px;
+    font-family: 'Montserrat';
+    color: #372F0D;
+    font-size: 30px;
 }
 
-form {
-    margin: 20px 0;
+.about-snapfolia-content ol{
+    position: relative;
+    left: 390px;
+    bottom: 350px;
+    color: #1F571A;
+    font-family: 'Montserrat';
+    font-size: 30px;
+}
+
+.about-snapfolia-content .upload-image{
+position: relative;
+bottom: 70px;
+left: 60px;
+height: 300px;
+width: 300px;
+border: 5px black solid;
+border-style: dotted;
+border-radius: 20px; 
+}
+
+.upload-image {
+    position: relative;
+    height: 300px;
+    width: 300px;
+    border: 5px black solid;
+    border-style: dotted;
+    border-radius: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    overflow: hidden; /* Ensures the image doesn't overflow */
 }
 
-input[type="file"] {
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-input[type="submit"] {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: #fff;
+.upload-image #upload {
+    padding: 7px;
+    font-size: 15px;
+    font-family: 'QuickSand';
+    font-weight: bolder;
+    color: white;
+    background-color: #468D40;
     border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+    border-radius: 5px;
+    width: 80%;
+    margin-top: 10px; /* Space between image and button */
+    text-align: center;
+}
+.upload-image img {
+    max-height: 80%;
+    max-width: 80%;
+    object-fit: contain; /* Ensures the image scales nicely */
 }
 
-input[type="submit"]:hover {
-    background-color: #0056b3;
+.about-snapfolia-content #scan{
+    font-size: 20px;
+    padding: 7px;
+    font-size: 20px;
+    font-family: 'QuickSand';
+    font-weight: bolder;
+    position: relative;
+    bottom: 50px;
+    left: 160px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    background-color: #468D40;
 }
 
-.image-gallery {
+.about-footer {
+    display: flex;
+    text-align: center;
+    width: 100%; /* Ensure the container takes full width */
+    position: absolute;
+    font-family: 'Quicksand', sans-serif;
+    font-weight:600;
+    font-size: 20px;
+    color: #372F0D;
+    top: 750px;
+    left: 0px;
+    align-items: center;
+    justify-content: center;
     margin-top: 20px;
 }
 
-.button {
-    padding: 10px 20px;
-    background-color: #28a745;
-    color: #fff;
+.about-footer::before,
+.about-footer::after {
+    content: '';
+    flex-grow: 1;
+    border-bottom: 1px solid #000; /* Line color */
+    margin: 0 50px 0 50px; /* Space around the text */
+}
+
+.datasets-container #search{
+    position: absolute;
+    top: 800px;
+    right: 100px;
+    border-radius: 6px;
+    padding: 10px;
+    font-size: 20px;
+    background-color: #468D40;
     border: none;
-    border-radius: 4px;
+    color: white;
+    margin-top: 20px;
+}
+
+.datasets-container #search::placeholder{
+    color: white;
+}
+
+.box-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 columns */
+    grid-gap: 20px; /* Gap between boxes */
+    position: relative;
+    top: -70px;
+}
+
+
+.box {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.box img {
+    height: 100px;
+    width: 100px;
+    margin-left: 50px;
+    padding: 0%;
+}
+
+.box p {
+    margin-left: 50px;
+    font-size: 30px;
+    font-weight: bolder;
+    font-family:'Montserrat';
+    color: #468D40;
+}
+
+.dataset-footer {
+    display: flex;
+    text-align: center;
+    width: 100%; /* Ensure the container takes full width */
+    position: absolute;
+    font-family: 'Quicksand', sans-serif;
+    font-weight:600;
+    font-size: 20px;
+    color: #372F0D;
+    top: 1420px;
+    left: 0px;
+    align-items: center;
+    justify-content: center;
+}
+
+.dataset-footer::before,
+.dataset-footer::after {
+    content: '';
+    flex-grow: 1;
+    border-bottom: 1px solid #000; /* Line color */
+    margin: 0 50px 0 50px; /* Space around the text */
+}
+
+.developers-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.developer {
+    text-align: center;
+}
+
+.developer img {
+    border: 3px solid #468D40;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.developer p {
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
+    color: #372F0D;
+}
+
+.developer .title{
+    font-size: 12px;
+}
+
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    z-index: 999; /* Ensure it's above other elements */
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center horizontally and vertically */
+}
+
+
+.popup-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    max-width: 80%;
+    text-align: center;
+    position: fixed; /* Change position to fixed */
+    top: 50%; /* Place it at the vertical center */
+    left: 50%; /* Place it at the horizontal center */
+    transform: translate(-50%, -50%); /* Adjust its position */
+    z-index: 1000; /* Add a higher z-index */
+}
+
+.popup-container h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.popup-container p {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.popup-container button {
+    font-size: 18px;
+    padding: 10px 20px;
+    border: none;
+    background-color: #468D40;
+    color: #fff;
+    border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+}
+
+.popup-container button:hover {
+    background-color: #1F571A;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+#backToTop {
+    display: none; /* Hidden by default */
+    position: fixed; /* Fixed position */
+    bottom: 20px; /* Place at the bottom */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 99; /* Make sure it does not overlap other elements */
+    border: none; /* Remove borders */
+    outline: none; /* Remove outline */
+    background-color: #468D40; /* Set a background color */
+    color: white; /* Text color */
+    cursor: pointer; /* Add a mouse pointer on hover */
+    padding: 15px; /* Some padding */
+    border-radius: 10px; /* Rounded corners */
+    font-size: 18px; /* Increase font size */
+}
+
+#backToTop:hover {
+    background-color: #555; /* Add a dark-grey background on hover */
+}
+
+a{
     text-decoration: none;
 }
 
-.button:hover {
-    background-color: #218838;
+#faith-logo{
+    margin-top: 40px;
+    margin-left: 999px;
 }
 
-.hidden {
-    display: none;
-}
-
-img {
-    max-width: 100%;
-    height: auto;
-    margin-top: 10px;
-}
