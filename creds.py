@@ -16,4 +16,3 @@ def authenticate():
     # Load credentials from the specified path
     creds = service_account.Credentials.from_service_account_file(credentials_path, scopes=SCOPES)
     return creds
-    
