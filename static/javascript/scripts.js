@@ -135,3 +135,9 @@ window.addEventListener('keydown', function(e) {
         e.preventDefault();
     }
 });
+
+function submitLeafForm() {
+    document.getElementById("leafForm").submit();
+}
+
+document.getElementById("scan").addEventListener("click", submitLeafForm);

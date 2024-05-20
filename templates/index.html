@@ -53,11 +53,16 @@
                 Fermentum odio eu feugiat pretium nibh ipsum consequat. Nulla facilisi nullam vehicula
                 ipsum a arcu. Lorem ipsum dolor sit amet consectetur. </p>
                 <h2>WANT TO LEARN WHAT LEAF IT IS?</h2>
+                
                 <div class="upload-image">
                     <img src="{{ url_for('static', filename='assets/img_logo.png') }}" alt="Logo of an Image">
-                    <input id="upload" type="file" value="Upload Image">
+                    <form id="leafForm" method="POST" enctype="multipart/form-data" action="{{ url_for('predict_image') }}">
+                        <input id="upload" type="file" accept=".jpg, .png, .jpeg" name="file">
+                    </form>
                 </div>
-                <input id='scan' type="button" value="Scan Leaf">
+                
+                <button id="scan" type="button">Scan Leaf</button>
+            
                 <ol>
                     <li>UPLOAD A LEAF IMAGE</li>
                     <li>TAP THE "SCAN LEAF" BUTTON</li>
