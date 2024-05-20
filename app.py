@@ -84,18 +84,18 @@ def predict_image():
         input_features = IMGPR.for_predicting(file_stream=file)
 
         if input_features is not None:
-            # Reshape features for prediction
-            input_features = input_features.reshape(1, -1)
+            input_features = input_features.reshape(1, -1)  
 
-            svm_model = SvmModel()
+            svm_model = SvmModel() 
             prediction = svm_model.predict(input_features)
             return f"Prediction: {prediction[0]}"
         else:
-            return "Error processing image."
+            return "Error: Failed to process the image."
 
     except Exception as e:
         print("Error predicting:", e)
         return f"Error predicting: {str(e)}"
+
 
 if __name__ == '__main__':
     app.run(debug=True)
