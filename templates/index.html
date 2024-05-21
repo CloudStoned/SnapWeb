@@ -60,12 +60,12 @@
 
                 <div class="upload-image">
                     <button class="cancel-btn">&times;</button>
-                    <img src="{{ url_for('static', filename='assets/img_logo.png') }}" alt="Logo of an Image">
-                    
+                    <img id="upload-image-preview" src="{{ url_for('static', filename='assets/img_logo.png') }}" alt="Logo of an Image" data-default-src="{{ url_for('static', filename='assets/img_logo.png') }}">
                     <form id="leafForm" method="POST" enctype="multipart/form-data" action="{{ url_for('predict_image') }}">
                         <input id="upload" type="file" accept=".jpg, .png, .jpeg" name="file">
                     </form>
                 </div>
+                
                 
                 <button id="scan" type="button">Scan Leaf</button>
                 <ol>
