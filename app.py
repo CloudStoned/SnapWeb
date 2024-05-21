@@ -88,14 +88,15 @@ def predict_image():
 
             svm_model = SvmModel() 
             prediction = svm_model.predict(input_features)
-            return f"Prediction: {prediction[0]}"
+            predicted_leaf = prediction[0].lower()
+
+            return render_template('predict_image.html', predicted_leaf=predicted_leaf)
         else:
-            return "Error: Failed to process the image."
+            return "Failed to process the image."
 
     except Exception as e:
         print("Error predicting:", e)
         return f"Error predicting: {str(e)}"
-
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -223,7 +223,13 @@ document.addEventListener("DOMContentLoaded", function() {
     const uploadInput = document.getElementById('upload');
     const uploadImagePreview = document.getElementById('upload-image-preview');
     const cancelBtn = document.querySelector('.cancel-btn');
-    const defaultImageSrc = uploadImagePreview.getAttribute('data-default-src');  // Get the default image source from data attribute
+    const defaultImageSrc = uploadImagePreview.getAttribute('data-default-src');  
+
+    // Function to reset the upload input and image preview to default
+    function resetUpload() {
+        uploadInput.value = "";  
+        uploadImagePreview.src = defaultImageSrc;  
+    }
 
     uploadInput.addEventListener('change', function(event) {
         const file = event.target.files[0];
@@ -233,12 +239,13 @@ document.addEventListener("DOMContentLoaded", function() {
                 uploadImagePreview.src = e.target.result;
             };
             reader.readAsDataURL(file);
+        } else {
+            resetUpload(); 
         }
     });
 
     cancelBtn.addEventListener('click', function() {
-        uploadInput.value = "";  // Clear the file input
-        uploadImagePreview.src = defaultImageSrc;  // Reset the preview image to the default image
+        resetUpload(); 
     });
 });
 
