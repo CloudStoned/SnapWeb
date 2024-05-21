@@ -57,16 +57,17 @@
                     and can be used to educate users about trees. The application focuses on identifying and distinguishing
                     tree leaves, excluding identification of shrubs and grass. </p>
                 <h2>WANT TO LEARN WHAT LEAF IT IS?</h2>
-                
+
                 <div class="upload-image">
+                    <button class="cancel-btn">&times;</button>
                     <img src="{{ url_for('static', filename='assets/img_logo.png') }}" alt="Logo of an Image">
+                    
                     <form id="leafForm" method="POST" enctype="multipart/form-data" action="{{ url_for('predict_image') }}">
                         <input id="upload" type="file" accept=".jpg, .png, .jpeg" name="file">
                     </form>
                 </div>
-                                
-
-                <input id='scan' type="button" value="Scan Leaf">
+                
+                <button id="scan" type="button">Scan Leaf</button>
                 <ol>
                     <li>UPLOAD A LEAF IMAGE</li>
                     <li>TAP THE "SCAN LEAF" BUTTON</li>
@@ -129,7 +130,7 @@
                     <div class="developer">
                         <img src="{{ url_for('static', filename='assets/developers/cloud.jpeg') }}" alt="Developer 4">
                         <p>Bagtas, Cloud Neo</p>
-                        <p class="title">Back-End Developer / ML Engineer >
+                        <p class="title">Back-End Developer / Data Manager</p>
                     </div>
                 </div>
             </div>
