@@ -4,23 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Snapfolia</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <!-- Removed duplicate preconnect and font links -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,800;1,800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-</head>
-
+</head> 
 <body>
     <div class="popup-overlay">
         <div class="popup-container">
-            <button class="close-btn">&times;</button> <!-- Close button -->
-            <h2>Welcome to Snapfolia</h2>
-            <p>This is a popup reminder to help you navigate through our website. Use the navigation arrows to proceed.</p>
-            <button class="prev-btn">&lt;</button>
-            <button class="next-btn">&gt;</button>
+            <button class="close-btn">&times;</button>
+            <h2 id="popup-title">Welcome to Snapfolia</h2>
+            <p id="popup-content">Here are some reminders to utilize the full potential of the app.</p>
+            <h3 id="popup-subtitle">Please upload a closeup picture of the leaf.</h3>
+            <i class="fa-solid fa-circle-check fa-3x" style="color: #468D40;"></i>
+            <i class="fa-regular fa-circle-xmark fa-3x" style="color: #372f0d;"></i>
+            <img id="popup-image" src="{{ url_for('static', filename='assets/guide/slide1_yes.jpg') }}" alt="Close Up Picture of Leaf">
+            <img id="popup-image2" src="{{ url_for('static', filename='assets/guide/slide1_no.jpg') }}" alt="Far Picture of Leaf">
+            <div class="buttons">
+                <button class="dir-button prev-btn">&lt;</button>
+                <button class="dir-button next-btn">&gt;</button>
+            </div>
         </div>
     </div>
 
@@ -28,11 +33,10 @@
         <img src="{{ url_for('static', filename='assets/logo.png') }}" alt="Snapfolia Logo">
     </div>
     <div class="navigation">
-        <a href="#logo"><h4>Home</h4></a>
         <a href="#home-footer"><h4>About Snapfolia</h4></a>
         <a href="#about-footer"><h4>Datasets</h4></a>
         <a href="#dataset-footer"><h4>Developers</h4></a>
-        <h4>Guide</h4>
+        <a href="#guide"><h4 id="guide-btn">Guide</h4></a>
     </div>
     <h1>TREE ID <br>AT YOUR <br>FINGERTIPS </h1>
     <div id="leaf">
@@ -46,23 +50,21 @@
         <div class="about-snapfolia-content">
             <div class="about-snapfolia-container">
                 <div id="logotwo">
-                    <img src="{{ url_for('static', filename='assets/logo.png') }}"  alt="Snapfolia Logo">
+                    <img src="{{ url_for('static', filename='assets/logo.png') }}" alt="Snapfolia Logo">
                 </div>
-                <p>Snapfolia is a tree scanner app that is lorem ipsum dolor sit amet, consectetur
-                adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                Fermentum odio eu feugiat pretium nibh ipsum consequat. Nulla facilisi nullam vehicula
-                ipsum a arcu. Lorem ipsum dolor sit amet consectetur. </p>
+                <p> Snapfolia is an innovative web application designed for tree leaf identification. It
+                    has established itself as a reliable tool for leaf identification that has amazing features 
+                    and can be used to educate users about trees. The application focuses on identifying and distinguishing
+                    tree leaves, excluding identification of shrubs and grass. </p>
                 <h2>WANT TO LEARN WHAT LEAF IT IS?</h2>
-                
                 <div class="upload-image">
-                    <img src="{{ url_for('static', filename='assets/img_logo.png') }}" alt="Logo of an Image">
-                    <form id="leafForm" method="POST" enctype="multipart/form-data" action="{{ url_for('predict_image') }}">
-                        <input id="upload" type="file" accept=".jpg, .png, .jpeg" name="file">
-                    </form>
+                    <button class="cancel-btn">&times;</button>
+                    <img id="upload-image-preview" src="{{ url_for('static', filename='assets/img_logo.png') }}" alt="Logo of an Image" data-default-src="{{ url_for('static', filename='assets/img_logo.png') }}">
+                    <input id="upload" type="file" value="Upload Image">
                 </div>
                 
-                <button id="scan" type="button">Scan Leaf</button>
-            
+
+                <input id='scan' type="button" value="Scan Leaf">
                 <ol>
                     <li>UPLOAD A LEAF IMAGE</li>
                     <li>TAP THE "SCAN LEAF" BUTTON</li>
@@ -76,62 +78,63 @@
                         <input type="search" id="search" placeholder="Search">
                     </div>
                     <div class="box-grid">
-                        <div class="box dau">
+                        <div class="box dau" data-leaf="dau">
                             <img src="{{ url_for('static', filename='assets/leaves/dau.png') }}" alt="Dau Leaf">
                             <p>Dau</p>
                         </div>
-                        <div class="box kaliyos">
+                        <div class="box kaliyos" data-leaf="kaliyos">
                             <img src="{{ url_for('static', filename='assets/leaves/kaliyos.png') }}" alt="Kaliyos Leaf">
                             <p>Kaliyos</p>
                         </div>
-                        <div class="box mango">
-                            <img src="{{ url_for('static', filename='assets/leaves/mango.png') }}"alt="Mango Leaf">
+                        <div class="box mango" data-leaf="mango">
+                            <img src="{{ url_for('static', filename='assets/leaves/mango.png') }}" alt="Mango Leaf">
                             <p>Mango</p>
                         </div>
-                        <div class="box mulawin">
-                            <img src="{{ url_for('static', filename='assets/leaves/mulawin.png') }}"alt="Mulawin Leaf">
+                        <div class="box mulawin" data-leaf="mulawin">
+                            <img src="{{ url_for('static', filename='assets/leaves/mulawin.png') }}" alt="Mulawin Leaf">
                             <p>Mulawin</p>
                         </div>
-                        <div class="box palawan-cherry">
+                        <div class="box palawan-cherry" data-leaf="palawan-cherry">
                             <img src="{{ url_for('static', filename='assets/leaves/palawan_cherry.png') }}" alt="Palawan Cherry">
-                            <p>Palawan <br>Cherry</p>
+                            <p>Palawan Cherry</p>
                         </div>
-                        <div class="box ylang-ylang">
+                        <div class="box ylang-ylang" data-leaf="ylang-ylang">
                             <img src="{{ url_for('static', filename='assets/leaves/ylang-ylang.png') }}" alt="Ylang-Ylang Leaf">
                             <p>Ylang-Ylang</p>
                         </div>
                     </div>
                 </div>
+                <div id="leaf-popups"></div>
                 <div class="dataset-footer" id="dataset-footer">
                     <span class="developers-footer">Developers</span>
                 </div>
                 <div class="developers-container">
                     <div class="developer">
-                        <img src="{{ url_for('static', filename='assets/developers/hans.png') }}"alt="Developer 1">
+                        <img src="{{ url_for('static', filename='assets/developers/hans.png') }}" alt="Developer 1">
                         <p>Fernando, Hans Justin</p>
                         <p class="title">Front-End Developer / Project Manager</p>
                     </div>
                     <div class="developer">
-                        <img src="{{ url_for('static', filename='assets/developers/yvon.jpeg') }}"aalt="Developer 2">
+                        <img src="{{ url_for('static', filename='assets/developers/yvon.jpeg') }}" alt="Developer 2">
                         <p>Galicia, Xandra Yvonne</p>
                         <p class="title">Web Designer / Data Manager</p>
                     </div>
                     <div class="developer">
-                        <img src="{{ url_for('static', filename='assets/developers/jester.png') }}"aalt="Developer 3">
+                        <img src="{{ url_for('static', filename='assets/developers/jester.png') }}" alt="Developer 3">
                         <p>Cruz, Jester Ray</p>
                         <p class="title">Back-End Developer / Data Manager</p>
                     </div>
                     <div class="developer">
-                        <img src="{{ url_for('static', filename='assets/developers/cloud.jpeg') }}"aalt="Developer 4">
+                        <img src="{{ url_for('static', filename='assets/developers/cloud.jpeg') }}" alt="Developer 4">
                         <p>Bagtas, Cloud Neo</p>
-                        <p class="title">Back-End Developer / ML Engineer</p>
+                        <p class="title">Back-End Developer / ML Engineer >
                     </div>
                 </div>
             </div>
         </div>
-        <img id="faith-logo" height="80px"src="{{ url_for('static', filename='assets/faith.png') }}" alt="FAITH Logo">
+        <img id="faith-logo" height="80px" src="{{ url_for('static', filename='assets/faith.png') }}" alt="FAITH Logo">
     </div>
-<button id="backToTop" title="Back to Top">Back to Top ↑</button>
-<script src="{{ url_for('static', filename='javascript/scripts.js') }}"></script>
+<button id="backToTop" title="Back to Top">↑</button>
+<script src="{{ url_for('static', filename='javascript/script.js') }}"></script>
 </body>
 </html>
