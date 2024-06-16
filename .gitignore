@@ -1,0 +1,10 @@
+*.jpg
+*.png
+*.jpeg
+*.DNG
+*.JPG
+*.env
+__pycache__
+venv/
+models/
+*.zip
